@@ -106,8 +106,5 @@ A scatter plot is used to show the relationship between two continuous variables
 
 ---
 
-This image illustrates the various plots in R: horizontal bar plot, histogram, box plot, and scatter plot.
-
-![R Data Visualizations](file-tFm9rmng0qXWELJ14d9HNajk)
 
 With these visualization techniques, you can effectively explore and communicate insights from your data in R.
