@@ -93,3 +93,89 @@ For a detailed visual explanation of MLP architecture and how it works, you can 
 
 ---
 Let me know if you'd like to explore any specific part of MLP further!
+
+In **Deep Learning**, optimizers adjust the model’s parameters (weights and biases) to minimize the loss function. They update parameters using gradients calculated during backpropagation. Below are the most commonly used optimizers, summarized.
+
+### 1. **Gradient Descent**
+**Gradient Descent** iteratively updates parameters in the direction of the negative gradient to minimize the loss function.
+
+**Types**:
+- **Batch Gradient Descent**: Updates using the entire dataset.
+- **Stochastic Gradient Descent (SGD)**: Updates using one sample, leading to faster but noisier updates.
+- **Mini-Batch Gradient Descent**: Uses small data batches, balancing speed and accuracy.
+
+**Equation**:
+\[
+\theta = \theta - \eta \nabla_{\theta} J(\theta)
+\]
+Where:
+- \( \theta \): model parameters,
+- \( \eta \): learning rate,
+- \( \nabla_{\theta} J(\theta) \): gradient of loss function.
+
+### 2. **Momentum**
+Momentum adds a term that speeds up learning by dampening oscillations, moving faster in the direction of consistent gradients.
+
+**Equation**:
+\[
+v_t = \beta v_{t-1} + (1 - \beta) \nabla_{\theta} J(\theta)
+\]
+\[
+\theta = \theta - \eta v_t
+\]
+Where \( \beta \) is the momentum factor.
+
+### 3. **Adagrad**
+Adagrad adjusts the learning rate for each parameter individually, making larger updates for infrequent parameters and smaller updates for frequent ones.
+
+**Equation**:
+\[
+\theta = \theta - \frac{\eta}{\sqrt{G_t + \epsilon}} \nabla_{\theta} J(\theta)
+\]
+Where \( G_t \) is the sum of squared gradients.
+
+### 4. **RMSprop**
+RMSprop maintains a moving average of squared gradients to adjust the learning rate, solving the learning rate decay problem in Adagrad.
+
+**Equation**:
+\[
+\theta = \theta - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} \nabla_{\theta} J(\theta)
+\]
+
+### 5. **Adam**
+Adam combines Momentum and RMSprop, maintaining both first and second moments (mean and variance) of gradients.
+
+**Equation**:
+\[
+m_t = \beta_1 m_{t-1} + (1 - \beta_1) \nabla_{\theta} J(\theta)
+\]
+\[
+v_t = \beta_2 v_{t-1} + (1 - \beta_2) (\nabla_{\theta} J(\theta))^2
+\]
+\[
+\theta = \theta - \frac{\eta}{\sqrt{\hat{v_t}} + \epsilon} \hat{m_t}
+\]
+Adam is versatile and works well across a wide variety of tasks.
+
+### 6. **Nadam**
+Nadam combines Adam with Nesterov Accelerated Gradient (NAG), offering better performance in certain tasks.
+
+**Equation**:
+\[
+\theta = \theta - \frac{\eta}{\sqrt{v_t} + \epsilon} (\beta_1 m_t + (1 - \beta_1) \nabla_{\theta} J(\theta))
+\]
+
+### Summary Table:
+
+| Optimizer  | Adaptive Learning | Momentum | Use Case                         |
+|------------|-------------------|----------|----------------------------------|
+| Gradient Descent | No                | No       | General-purpose, smaller datasets|
+| Momentum   | No                | Yes      | Tasks with high noise            |
+| RMSprop    | Yes               | No       | Recurrent Neural Networks        |
+| Adam       | Yes               | Yes      | General-purpose, most models     |
+| Adagrad    | Yes               | No       | Sparse data                      |
+| Nadam      | Yes               | Yes      | Faster convergence               |
+
+For a visual understanding, check out [this optimization image](https://ruder.io/optimizing-gradient-descent/fig/opt/adam-vs-rmsprop.png).
+
+Let me know if you need more details or further clarification on any optimizer!
